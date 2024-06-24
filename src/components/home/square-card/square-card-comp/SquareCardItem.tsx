@@ -16,7 +16,7 @@ export default function SquareCardItem({ item }: SqCardPropType) {
   }
   return (
     <div className=" relative rounded-lg">
-      <img src={item.img} alt="" className="rounded-lg h-full" />
+      <img src={item.img} alt="" className="rounded-lg" />
       <div className="absolute bottom-0 right-0 left-0 bg-black opacity-80  text-white flex justify-between items-center px-2 md:px-4 py-3 rounded-lg">
         <p className="">&#8377;{item.itemOfferAmount}</p>
         <motion.button
