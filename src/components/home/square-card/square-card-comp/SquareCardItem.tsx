@@ -2,17 +2,16 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../header/header-comp/cart/CartSlice";
 import { SqCardPropType } from "../../../../utils/types/Types";
 import { motion } from "framer-motion";
-import { CartItem } from "../../../../utils/types/Types";
-
 
 export default function SquareCardItem({ item }: SqCardPropType) {
-
   const dispatch = useDispatch();
   function handleAddCartItem() {
-    const cartItem: CartItem = {
+    const cartItem = {
       ...item,
-      quantity: 1, 
+      quantity: 1,
     };
+
+    // @ts-ignore
     dispatch(addItem(cartItem));
   }
   return (
@@ -22,9 +21,11 @@ export default function SquareCardItem({ item }: SqCardPropType) {
         <p className="">&#8377;{item.itemOfferAmount}</p>
         <motion.button
           className="border border-white bg-transparent px-1 md:px-6 md:py-1 rounded-full "
-          whileHover={{scale: 1.1}}
-          whileTap={{scale: 0.95}}
-          onClick={() => {handleAddCartItem()} } 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            handleAddCartItem();
+          }}
         >
           {item.btntext}
         </motion.button>

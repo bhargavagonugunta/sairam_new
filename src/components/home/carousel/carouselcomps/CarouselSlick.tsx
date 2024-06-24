@@ -1,42 +1,49 @@
-import React, { useRef } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import CarouselA from './CarouselA';
-import CarouselB from './CarouselB';
-import CarouselC from './CarouselC';
-import CarouselD from './CarouselD';
-import { Leftdouble } from '../../../../assets/svgs/Leftdouble';
-import { Rightdouble } from '../../../../assets/svgs/Rightdouble';
+import { useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CarouselA from "./CarouselA";
+import CarouselB from "./CarouselB";
+import CarouselD from "./CarouselD";
+import { Leftdouble } from "../../../../assets/svgs/Leftdouble";
+import { Rightdouble } from "../../../../assets/svgs/Rightdouble";
 
 const CarouselSlick = () => {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider>(null);
 
+  // @ts-ignore
   const goToSlide = (index) => {
-    sliderRef.current.slickGoTo(index);
+    sliderRef?.current?.slickGoTo(index);
   };
 
+  // @ts-ignore
   const LeftdoubleButton = () => (
-    <button className='w-10 absolute top-1/2 transform -translate-y-1/2 left-2' onClick={() => sliderRef.current.slickPrev()}>
+    <button
+      className="w-10 absolute top-1/2 transform -translate-y-1/2 left-2"
+      onClick={() => sliderRef?.current?.slickPrev()}
+    >
       <Leftdouble />
     </button>
   );
-
+  // @ts-ignore
   const RightdoubleButton = () => (
-    <button className='w-10 absolute top-1/2 transform -translate-y-1/2 right-2' onClick={() => sliderRef.current.slickNext()}>
+    <button
+      className="w-10 absolute top-1/2 transform -translate-y-1/2 right-2"
+      onClick={() => sliderRef?.current?.slickNext()}
+    >
       <Rightdouble />
     </button>
   );
 
-  const handleDotClick = (index) => {
-    sliderRef.current.slickGoTo(index);
+  const handleDotClick = (index: number) => {
+    sliderRef?.current?.slickGoTo(index);
   };
 
-  const CustomDot = ({ index, onClick, active }) => (
+  // @ts-ignore
+  const CustomDot = ({ index, onClick, active }: any) => (
     <button
-      className={`slick-dot ${active ? 'active' : ''} cursor-pointer`}
+      className={`slick-dot ${active ? "active" : ""} cursor-pointer`}
       onClick={() => handleDotClick(index)}
-      
     />
   );
 
@@ -48,13 +55,17 @@ const CarouselSlick = () => {
     slidesToScroll: 1,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    customPaging: (i) => <CustomDot index={i} active={i === 0} />,
+    customPaging: (i: number) => <CustomDot index={i} active={i === 0} />,
   };
 
+  // @ts-ignore
   return (
-    <div className='relative max-w-screen overflow-hidden' onMouseEnter={() => sliderRef.current.slickPause()} onMouseLeave={() => sliderRef.current.slickPlay()}>
-      
-      <Slider {...settings} ref={sliderRef} className='h-full'>
+    <div
+      className="relative max-w-screen overflow-hidden"
+      onMouseEnter={() => sliderRef?.current?.slickPause()}
+      onMouseLeave={() => sliderRef?.current?.slickPlay()}
+    >
+      <Slider {...settings} ref={sliderRef} className="h-full">
         <div>
           <CarouselA />
         </div>
@@ -66,13 +77,11 @@ const CarouselSlick = () => {
         </div>
       </Slider>
       {/* <RightdoubleButton /> */}
-      
     </div>
   );
 };
 
 export default CarouselSlick;
-
 
 // import React, { useRef, useState, useEffect } from 'react';
 // import Slider from 'react-slick';
@@ -140,7 +149,7 @@ export default CarouselSlick;
 //           borderRadius: "10px",
 //           padding: "10px",
 //           textAlign: "center",
-          
+
 //         }}
 //       >
 //         {dots}
